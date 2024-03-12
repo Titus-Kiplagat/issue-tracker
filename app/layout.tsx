@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./NavBar";
 import { Theme } from "@radix-ui/themes";
+import AuthProvider from "./auth/Provider";
 
-const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.variable}>
-        <Theme appearance="light" accentColor="purple" radius="large">
-          <NavBar />
-          <main className="p-5">{children}</main>
-        </Theme>
+        <AuthProvider>
+          <Theme appearance="light" accentColor="purple" radius="large">
+            <NavBar />
+            <main className="p-5">{children}</main>
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
