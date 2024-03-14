@@ -4,18 +4,17 @@ import { User } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Skeleton } from '@/app/components';
 
 const AssigneeSelect = () => {
-  const { isPending, error, data: users } = useQuery<User[]>({
+  const { isLoading, error, data: users } = useQuery<User[]>({
     queryKey: ["users"],
     queryFn: () => axios.get<User[]>("/api/users").then((res) => res.data),
     staleTime: 1000 * 60 * 60 * 24,
     retry: 3,
   });
 
-  if (isPending) return <Skeleton />;
+  if (isLoading) return <Skeleton />;
 
   if (error) return null;
 

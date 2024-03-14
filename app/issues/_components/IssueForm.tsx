@@ -1,4 +1,5 @@
 "use client";
+
 import { ErrorMessage, Spinner } from "@/app/components";
 import { issueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,12 +7,11 @@ import { Issue } from "@prisma/client";
 import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
 import SimpleMDE from "react-simplemde-editor";
+import * as z from "zod";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
