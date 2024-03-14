@@ -36,8 +36,9 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
 	const updatedIssue = await prisma.issue.update({
 		where: { id: issue.id },
 		data: {
-			title: body.title,
-			description: body.description
+			title,
+			description,
+			assignedToUserId
 		}
 	})
 
